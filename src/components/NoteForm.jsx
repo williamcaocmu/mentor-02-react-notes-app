@@ -2,12 +2,17 @@ import { useState } from "react";
 
 function NoteForm() {
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("");
-  const [category, setCategory] = useState("");
+  const [priority, setPriority] = useState("medium");
+  const [category, setCategory] = useState("work");
   const [description, setDescription] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(title, priority, category, description);
+  };
+
   return (
-    <form className="mb-6">
+    <form className="mb-6" onSubmit={handleSubmit}>
       <div className="mb-4">
         <label htmlFor="note" className="block font-semibold">
           Title
