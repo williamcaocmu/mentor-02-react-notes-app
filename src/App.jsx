@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
+import ToggleButton from "./components/ToggleButton";
 
 const initialNotes = [
   {
@@ -29,11 +30,23 @@ const initialNotes = [
 function App() {
   const [notes, setNotes] = useState(initialNotes);
 
+  const handleAddNote = ({ title, priority, category, description }) => {
+    const newNote = {
+      id: notes.length + 1,
+      title,
+      priority,
+      category,
+      description,
+    };
+    setNotes([...notes, newNote]);
+  };
+
   return (
     <>
       <div className="max-w-lg mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">📝 Notes App</h2>
-        <NoteForm />
+        <ToggleButton />
+        <NoteForm handleAddNote={handleAddNote} />
         <NoteList notes={notes} />
       </div>
     </>
